@@ -10,5 +10,5 @@ COPY .env /app
 
 RUN pip install -r requirements.txt
 
-ENTRYPOINT ["streamlit","run" ,"main.py"]
+ENTRYPOINT ["streamlit","run " ,"main.py"]
 
