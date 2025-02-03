@@ -1,0 +1,7 @@
+Question,Answer
+What are the two aspects that the encoder-decoder attention provides?,holistic view and context vectors
+What is the name of the proposed mechanism to replace causal self-attention layers?,PNCA
+What feature does the pseudo non-causal attention inherit from the original attention mechanism?,Holistic view
+What differs RobuTrans from TransformerTTS in terms of input for Encoder?,Linguistic
+What layer in Decoder is replaced with pseudo non-causal attention in RobuTrans?,self-attention
+What type of features are obtained using a rule-based system in Text-to-Linguistic-Feature Converter?,Features

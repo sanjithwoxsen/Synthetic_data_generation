@@ -1,0 +1,29 @@
+Clarified Query: SELECT * FROM "VectorDatabase" WHERE `topic` = "encoder-decoder";
+Document 1: rid of abnormal cases, instead gives rise to other issues suchas higher speech rate and weird rhythm.
+In this paper, we remove the encoder-decoder attention
+and apply a duration-based hard attention to copy encoderhidden states to their corresponding frames, forcing the de-
+1Such as URL, a sequence of numbers, and other texts which
+are out of the domain of the training data
+8228coder to generate correct content. To have a holistic view
+of the whole input as the original attention mechanism, we
+replace the causal self-attention layer in the decoder with a
+Document 2: mation is injected by adding two position embeddings to theoutput of the encoder and decoder pre-nets respectively. Theencoder is built with stacks of several identity blocks, eachcontains two sub-networks: a self-attention and a feed for-ward network. The decoder has the similar structure, whilethe self-attention is causal to attend to only the previouslydecoded frames, and an extra encoder-decoder attention isleveraged to attend to encoder hidden states.
+Based on the ﬁnal hidden states of the decoder, mel spec-
+trum frames are generated autogressively with a linear layer
+Figure 1: Architecture of TransfomerTTS.
+followed by a post-net, which stops when a stop token is
+predicted by a separate linear projection.
+Similar to Tacotron2, TransformerTTS also borrows tech-
+Document 3: 3.3 Pseudo Non-causal Attention
+As discussed in Section 2.1, the encoder-decoder attentionmechanism is a crucial factor for the instability. However,simply removing this attention will also discard the advan-tages it brings to the TTS model. The advantages can beconsidered as the following two aspects. On the one hand,the encoder-decoder attention provides a holistic view of in-put sequence for the decoder, while on the other hand, itcomposes frame-level context vectors according to decoderinputs (which are mel frames). These two advantages makegreat contribution to the decoding procedure, and we pro-pose ”pseudo non-causal attention” (PNCA) to replace thecausal self-attention layers as shown in Figure 4, which notonly inherits the two features above, but also makes the de-coding procedure robust.
+LetTbe the total length of mel spectrum to be decoded,
+x
+l
+ibe the autoregressive output of step iand layer l,hibe
+the tiled encoder hidden state of step i. For the time step
+Document 4: RobuTrans differs from TransformerTTS in following as-
+pects: 1) The input of Encoder is linguistic features, whichconsists of phonemic and prosodic features; 2) The positionembedding in the Encoder and Decoder is removed; 3) Theencoder-decoder attention is replaced with a duration basedhard attention; 4) The causal self-attention in Decoder is re-placed with pseudo non-causal attention.
+82303.1 Text-to-Linguistic-Feature Converter
+We ﬁrst convert the input text into linguistic features, which
+consist of phonemic and prosodic features and then con-sumed by Encoder. To obtain the phonemic features, a rule-based system is used for the grapheme-to-phoneme conver-sion, which generates the phonemic categorical features
+2.

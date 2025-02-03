@@ -1,0 +1,25 @@
+ Clarified Query:Here is the query:
+
+`"encoder-decoder attention mechanism without position encoding constraint"`Document 1:the third word at the third step, while on the other hand, af-
+ter attending to the forth word at the fourth step, it attendsto the third word again. These two cases deﬁnitely outputbad cases. Although some variation of attention mechanisms(e.g. forward attention) has tried to construct a monotonouscontinuous correspondence between encoder and decoder,they cannot completely eliminate bad cases. Details will beshown in Section 4.6.
+2.2 Imprecise Stop PredictionDocument 2:thei-th step attends to the j-th word at the source side,
+the(i+1 ) -th step must attend to the (j+n)-th word
+(1≥n≥0), as shown in the left picture in Figure 2.
+Previous models ignore this constraint, and learn the
+alignment from the data totally, resulting in incorrect align-ments for special inputs. The right picture in Figure 2 showsan example of an abnormal alignment. On the one hand, theattention mechanism skips the second word and attends to
+8229Figure 2: Normal and abnormal alignments of encoder-
+decoder attention. Mel spectrum frames (queries) are rangedhorizontally, while encoder hidden states (keys) are vertical.Left: normal alignment; the focus along keys are continuousand monotonous. Right: Abnormal alignment; the red linerepresents the skipping as well as retreating advance.
+the third word at the third step, while on the other hand, af-Document 3:3.3 Pseudo Non-causal Attention
+As discussed in Section 2.1, the encoder-decoder attentionmechanism is a crucial factor for the instability. However,simply removing this attention will also discard the advan-tages it brings to the TTS model. The advantages can beconsidered as the following two aspects. On the one hand,the encoder-decoder attention provides a holistic view of in-put sequence for the decoder, while on the other hand, itcomposes frame-level context vectors according to decoderinputs (which are mel frames). These two advantages makegreat contribution to the decoding procedure, and we pro-pose ”pseudo non-causal attention” (PNCA) to replace thecausal self-attention layers as shown in Figure 4, which notonly inherits the two features above, but also makes the de-coding procedure robust.
+LetTbe the total length of mel spectrum to be decoded,
+x
+l
+ibe the autoregressive output of step iand layer l,hibe
+the tiled encoder hidden state of step i. For the time stepDocument 4:rid of abnormal cases, instead gives rise to other issues suchas higher speech rate and weird rhythm.
+In this paper, we remove the encoder-decoder attention
+and apply a duration-based hard attention to copy encoderhidden states to their corresponding frames, forcing the de-
+1Such as URL, a sequence of numbers, and other texts which
+are out of the domain of the training data
+8228coder to generate correct content. To have a holistic view
+of the whole input as the original attention mechanism, we
+replace the causal self-attention layer in the decoder with a

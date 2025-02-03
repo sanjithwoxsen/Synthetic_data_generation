@@ -1,0 +1,6 @@
+Question,Answer
+"What is the main problem that current neural TTS models suffer from, as mentioned in the document?",robustness issue
+How does RobuTrans model the holistic information of the input differently than TransformerTTS?,"RobuTrans models the holistic information of the input differently than TransformerTTS by replacing encoder-decoder attention with a duration-based hard attention mechanism and causal self-attention with a ""pseudo non-causal attention"" mechanism. Additionally, RobuTrans replaces position embedding with a 1-D CNN to model relative position information in a fixed window."
+What role do prosodic features play in RobuTrans for synthesizing expressive speech?,The prosodic feature plays a critical role in RobuTrans for synthesizing expressive speech.
+How does RobuTrans achieve parity MOS with other models like TransformerTTS and Tacotron2?,"RobuTrans achieves parity MOS with other models like TransformerTTS and Tacotron2 by making several modifications to the traditional transformer architecture, including converting input texts to linguistic features, using a duration-based hard attention mechanism in the decoder, replacing causal self-attention with a ""pseudo non-causal attention"" mechanism, and removing position embedding."
+"What is the alternative to position embedding used in RobuTrans, as mentioned in Section 3.4?",A 1-D CNN
